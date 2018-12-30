@@ -85,8 +85,9 @@ foreach($info['addresses'] as $address) {
 	if(!$address['external'] || $address['version'] != 4) {
 		continue;
 	}
-	if(!array_key_exists('reverse', $address)) {
-		$address['reverse'] = '';
+	if(!array_key_exists('reverse', $address) ||
+	strpos($address['reverse'], 'rdns.lunanode.com') !== false) {
+	$address['reverse'] = '';
 	}
 	?>
 	<form method="POST" action="clientarea.php?action=productdetails&id=<?php echo $params['serviceid']; ?>">
